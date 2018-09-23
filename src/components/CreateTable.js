@@ -4,7 +4,6 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
 const CreateTable = props => {
-  console.log(props)
   return (
     <div>
       <h3>Create Table !!</h3>
@@ -12,7 +11,15 @@ const CreateTable = props => {
         Start Date :
         <DatePicker 
           selected={props.startDate}
-          onChange={props.handleChange}
+          onChange={props.handleStartDateChange}
+          dateFormat="DD/MM/YYYY"
+        />
+      </div>
+      <div>
+        End Date :
+        <DatePicker 
+          selected={props.endDate}
+          onChange={props.handleEndDateChange}
           dateFormat="DD/MM/YYYY"
         />
       </div>

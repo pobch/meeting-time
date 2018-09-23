@@ -1,15 +1,28 @@
 import React from 'react'
 import GanttTable from './GanttTable'
-import DisplayTable from './DisplayTable'
+import TableWrapper from './DisplayTable/TableWrapper'
+import TableHeader from './DisplayTable/TableHeader'
+import TableBody from './DisplayTable/TableBody'
 import CreateTable from './CreateTable'
 
 export default () => (
   <GanttTable>
-    {(startDate, handleChange) => {
+    {(startDate, handleStartDateChange, endDate, handleEndDateChange, daysArray, hoursArray) => {
       return (
         <React.Fragment>
-          <DisplayTable />
-          <CreateTable startDate={startDate} handleChange={handleChange} />
+          <TableWrapper>
+            <TableHeader
+              daysArray={daysArray}
+              hoursArray={hoursArray}
+            />
+            <TableBody />
+          </TableWrapper>
+          <CreateTable
+            startDate={startDate}
+            handleStartDateChange={handleStartDateChange}
+            endDate={endDate}
+            handleEndDateChange={handleEndDateChange}
+          />
         </React.Fragment>
       )
     }}
