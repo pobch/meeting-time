@@ -28,6 +28,26 @@ class TableBody extends Component {
     })
   }
 
+  onClickSave = (rowIdx) => () => {
+    this.setState(prevState => {
+      const newData = [...prevState.data]
+      newData[rowIdx].isEditing = false
+      return {
+        data: newData
+      }
+    })
+  }
+
+  onClickEdit = (rowIdx) => () => {
+    this.setState(prevState => {
+      const newData = [...prevState.data]
+      newData[rowIdx].isEditing = true
+      return {
+        data: newData
+      }
+    })
+  }
+
   onChangeName = (rowIdx) => (event) => {
     const value = event.target.value
     this.setState(prevState => {
@@ -55,14 +75,27 @@ class TableBody extends Component {
       return (
         <tr key={row.timeAdd}>
           <td>
-            <button type="button" onClick={this.onClickDel(rowIdx)}>-</button>
-            <button type="button">E</button>
-            <input type="text" value={row.name} onChange={this.onChangeName(rowIdx)} />
+            {row.isEditing
+              ? <React.Fragment>
+                  <button type="button" onClick={this.onClickDel(rowIdx)}>-</button>
+                  <button type="button" onClick={this.onClickSave(rowIdx)}>S</button>
+                  <input type="text" value={row.name} onChange={this.onChangeName(rowIdx)} />
+                </React.Fragment>
+              : <React.Fragment>
+                  <button type="button" onClick={this.onClickEdit(rowIdx)}>E</button>
+                  <input type="text" value={row.name} onChange={this.onChangeName(rowIdx)} disabled />
+                </React.Fragment>
+            }
           </td>
           {row.freeTime.map((hour, hourIdx) => {
             return (
               <td key={hour.dateHour}>
-                <input type="checkbox" checked={hour.free} onChange={this.onChangeChecked(rowIdx, hourIdx)} />
+                <input
+                  type="checkbox"
+                  checked={hour.free}
+                  onChange={this.onChangeChecked(rowIdx, hourIdx)}
+                  disabled={!row.isEditing}
+                />
               </td>
             )
           })}
