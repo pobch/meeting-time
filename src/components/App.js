@@ -15,7 +15,9 @@ export default () => (
               daysArray={daysArray}
               hoursArray={hoursArray}
             />
-            <TableBody />
+            <TableBody
+              hoursArray={hoursArray}
+            />
           </TableWrapper>
           <CreateTable
             startDate={startDate}
