@@ -11,7 +11,7 @@ class TableBody extends Component {
         ...prevState.data,
         {
           isEditing: true,
-          timeAdd: new Date(),
+          timeAdd: new Date().getTime(),
           name: '',
           freeTime: this.props.hoursArray.map(dateHourStr => ({ dateHour: dateHourStr, free: false }))
         }
@@ -20,10 +20,32 @@ class TableBody extends Component {
     })
   }
 
-  onClickDel = (rowIdx) => (event) => {
+  onClickDel = (rowIdx) => () => {
     this.setState(prevState => {
       return {
         data: prevState.data.slice(0, rowIdx).concat(prevState.data.slice(rowIdx + 1))
+      }
+    })
+  }
+
+  onChangeName = (rowIdx) => (event) => {
+    const value = event.target.value
+    this.setState(prevState => {
+      const newData = [...prevState.data]
+      newData[rowIdx].name = value
+      return {
+        data: newData
+      }
+    })
+  }
+
+  onChangeChecked = (rowIdx, hourIdx) => (event) => {
+    const checked = event.target.checked
+    this.setState(prevState => {
+      const newData = [...prevState.data]
+      newData[rowIdx].freeTime[hourIdx].free = checked
+      return {
+        data: newData
       }
     })
   }
@@ -35,10 +57,14 @@ class TableBody extends Component {
           <td>
             <button type="button" onClick={this.onClickDel(rowIdx)}>-</button>
             <button type="button">E</button>
-            <input type="text" value={row.name} />
+            <input type="text" value={row.name} onChange={this.onChangeName(rowIdx)} />
           </td>
-          {row.freeTime.map(hour => {
-            return <td key={hour.dateHour}><input type="checkbox" checked={hour.free}/></td>
+          {row.freeTime.map((hour, hourIdx) => {
+            return (
+              <td key={hour.dateHour}>
+                <input type="checkbox" checked={hour.free} onChange={this.onChangeChecked(rowIdx, hourIdx)} />
+              </td>
+            )
           })}
         </tr>
       )

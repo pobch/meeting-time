@@ -2,7 +2,7 @@
   // start first row
   {
     "isEditing": false, // indicate edit mode
-    "timeAdd": new Date(), // use as 'key' props
+    "timeAdd": new Date().getTime(), // use as 'key' props
     "name": "Pob", // first column
     "freeTime": [
       { // second column
@@ -26,7 +26,7 @@
   // start second row
   {
     "isEditing": false,
-    "timeAdd": new Date(),
+    "timeAdd": new Date().getTime(),
     "name": "Dip",
     "freeTime": [
       {
