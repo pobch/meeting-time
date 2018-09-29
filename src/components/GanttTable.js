@@ -14,7 +14,7 @@ class GanttTable extends Component {
       const { daysArray } = this.state
       let hoursArray = []
       daysArray.forEach( dayStr => {
-        const twentyFourHours = [...Array(24).keys()].map(num => `${dayStr}|${num}`)
+        const twentyFourHours = [...Array(24).keys()].map(num => `${dayStr}|${('0' + num).slice(-2)}`)
         hoursArray = [...hoursArray, ...twentyFourHours]
       })
       this.setState({

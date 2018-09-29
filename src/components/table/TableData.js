@@ -40,10 +40,7 @@ class TableData extends Component {
       [...Array(hoursArray.length).keys()].map(rowIdx => {
         return (
           <tr>
-            { rowIdx % 25 === 0
-              ? <th rowSpan="24">{hoursArray[rowIdx].replace(/\|.*/ig, '')}</th>
-              : <th></th>
-            }
+            {rowIdx % 24 === 0 && <th rowSpan="24">{hoursArray[rowIdx].replace(/\|.*/ig, '')}</th>}
             <td>{hoursArray[rowIdx].replace(/.*\|/ig, '')}</td>
             {data.map((col, colIdx) => {
               return (
