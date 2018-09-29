@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './TableBody.css'
 
 class TableBody extends Component {
   state = {
@@ -90,12 +91,17 @@ class TableBody extends Component {
           {row.freeTime.map((hour, hourIdx) => {
             return (
               <td key={hour.dateHour}>
-                <input
-                  type="checkbox"
-                  checked={hour.free}
-                  onChange={this.onChangeChecked(rowIdx, hourIdx)}
-                  disabled={!row.isEditing}
-                />
+                <div className="pretty p-switch p-fill">
+                  <input
+                    type="checkbox"
+                    checked={hour.free}
+                    onChange={this.onChangeChecked(rowIdx, hourIdx)}
+                    disabled={!row.isEditing}
+                  />
+                  <div className="state p-primary">
+                    <label/>
+                  </div>
+                </div>
               </td>
             )
           })}
