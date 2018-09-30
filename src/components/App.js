@@ -19,7 +19,8 @@ export default () => (
         onClickSave,
         onClickEdit,
         onChangeName,
-        onChangeChecked
+        onChangeChecked,
+        onChange6hoursChecked
       ) => {
       return (
         <React.Fragment>
@@ -33,6 +34,7 @@ export default () => (
               onClickEdit={onClickEdit}
               onChangeName={onChangeName}
               onChangeChecked={onChangeChecked}
+              onChange6hoursChecked={onChange6hoursChecked}
             />
           </TableWrapper>
           <CreateTable

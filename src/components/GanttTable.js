@@ -118,6 +118,19 @@ class GanttTable extends Component {
     })
   }
 
+  onChange6hoursChecked = (dataIdx, freeTimeStartIdx, freeTimeEndIdx) => (event) => {
+    const checked = event.target.checked
+    this.setState(prevState => {
+      const newData = [...prevState.data]
+      for(let i = freeTimeStartIdx; i <= freeTimeEndIdx; i++) {
+        newData[dataIdx].freeTime[i].free = checked
+      }
+      return {
+        data: newData
+      }
+    })
+  }
+
   render() {
     const { startDate, endDate, daysArray, hoursArray, data } = this.state
     return (
@@ -135,7 +148,8 @@ class GanttTable extends Component {
           this.onClickSave,
           this.onClickEdit,
           this.onChangeName,
-          this.onChangeChecked
+          this.onChangeChecked,
+          this.onChange6hoursChecked
         )}
       </div>
     )
