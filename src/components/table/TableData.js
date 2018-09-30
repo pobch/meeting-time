@@ -53,7 +53,7 @@ class TableData extends Component {
             {data.map((col, colIdx) => {
               return (
                 <React.Fragment key={col.timeAdd}>
-                  <td>
+                  <td className={(!col.isEditing && col.freeTime[rowIdx] && col.freeTime[rowIdx].free) ? 'green' : ''}>
                     <input
                       type="checkbox"
                       checked={col.freeTime[rowIdx] && col.freeTime[rowIdx].free}

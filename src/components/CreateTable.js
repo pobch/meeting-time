@@ -11,16 +11,26 @@ const CreateTable = props => {
         Start Date :
         <DatePicker 
           selected={props.startDate}
+          selectsStart
+          startDate={props.startDate}
+          endDate={props.endDate}
           onChange={props.handleStartDateChange}
           dateFormat="DD/MM/YYYY"
+          withPortal
+          isClearable
         />
       </div>
       <div>
         End Date :
         <DatePicker 
           selected={props.endDate}
+          selectsEnd
+          startDate={props.startDate}
+          endDate={props.endDate}
           onChange={props.handleEndDateChange}
           dateFormat="DD/MM/YYYY"
+          withPortal
+          isClearable
         />
       </div>
     </div>

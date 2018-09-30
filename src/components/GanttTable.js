@@ -56,13 +56,13 @@ class GanttTable extends Component {
   onClickAdd = () => {
     this.setState(prevState => {
       const newData = [
-        ...prevState.data,
         {
           isEditing: true,
           timeAdd: new Date().getTime(),
           name: '',
           freeTime: prevState.hoursArray.map(dateHourStr => ({ dateHour: dateHourStr, free: false }))
-        }
+        },
+        ...prevState.data
       ]
       return { data: newData }
     })
@@ -80,9 +80,7 @@ class GanttTable extends Component {
     this.setState(prevState => {
       const newData = [...prevState.data]
       newData[dataIdx].isEditing = false
-      return {
-        data: newData
-      }
+      return { data: newData }
     })
   }
 
@@ -90,9 +88,7 @@ class GanttTable extends Component {
     this.setState(prevState => {
       const newData = [...prevState.data]
       newData[dataIdx].isEditing = true
-      return {
-        data: newData
-      }
+      return { data: newData }
     })
   }
 
@@ -101,9 +97,7 @@ class GanttTable extends Component {
     this.setState(prevState => {
       const newData = [...prevState.data]
       newData[dataIdx].name = value
-      return {
-        data: newData
-      }
+      return { data: newData }
     })
   }
 
@@ -112,9 +106,7 @@ class GanttTable extends Component {
     this.setState(prevState => {
       const newData = [...prevState.data]
       newData[dataIdx].freeTime[freeTimeIdx].free = checked
-      return {
-        data: newData
-      }
+      return { data: newData }
     })
   }
 
@@ -125,9 +117,7 @@ class GanttTable extends Component {
       for(let i = freeTimeStartIdx; i <= freeTimeEndIdx; i++) {
         newData[dataIdx].freeTime[i].free = checked
       }
-      return {
-        data: newData
-      }
+      return { data: newData }
     })
   }
 
