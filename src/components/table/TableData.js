@@ -47,7 +47,7 @@ class TableData extends Component {
     ].concat(  
       [...Array(hoursArray.length).keys()].map(rowIdx => {
         return (
-          <tr>
+          <tr className={Math.floor(rowIdx/24) % 2 === 1 ? 'odd' : ''}>
             {rowIdx % 24 === 0 && 
               <th className="row-header" rowSpan="24">
                 <div>

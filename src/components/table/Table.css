@@ -6,7 +6,7 @@
 }
 .table-header-rotated td {
   text-align: center;
-  padding: 10px 5px;
+  /* padding: 10px 5px; */
   border: 1px solid #ccc;
   width: 30px;
 }
@@ -20,14 +20,17 @@
 }
 .table-header-rotated th.rotate > div > span {
   border-bottom: 1px solid #ccc;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
 }
 .table-header-rotated th.row-header {
-  padding: 0 10px;
+  /* padding: 0 10px; */
   border-bottom: 1px solid #ccc;
 }
 .table-header-rotated th.row-header > div {
   transform: rotate(90deg);
   width: 30px;
   white-space: nowrap;
+}
+.odd {
+  background-color: #eeeeee;
 }
