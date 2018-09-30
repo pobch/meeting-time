@@ -7,11 +7,11 @@ class TableData extends Component {
       onClickEdit, onChangeChecked, onChange6hoursChecked
     } = this.props
     return [
-      <tr>
+      <tr key="column-header">
         <th className="rotate" colSpan="2"></th>
         {data.map((col, colIdx) => {
           return (
-            <React.Fragment>
+            <React.Fragment key={col.timeAdd}>
               <th className="rotate">
                 {col.isEditing
                   ? <React.Fragment>
@@ -41,7 +41,7 @@ class TableData extends Component {
     ].concat(  
       [...Array(hoursArray.length).keys()].map(rowIdx => {
         return (
-          <tr className={Math.floor(rowIdx/24) % 2 === 1 ? 'odd' : ''}>
+          <tr key={hoursArray[rowIdx]} className={Math.floor(rowIdx/24) % 2 === 1 ? 'odd' : ''}>
             {rowIdx % 24 === 0 && 
               <th className="row-header" rowSpan="24">
                 <div>
@@ -52,7 +52,7 @@ class TableData extends Component {
             <td>{hoursArray[rowIdx].replace(/.*\|/ig, '')}</td>
             {data.map((col, colIdx) => {
               return (
-                <React.Fragment>
+                <React.Fragment key={col.timeAdd}>
                   <td>
                     <input
                       type="checkbox"

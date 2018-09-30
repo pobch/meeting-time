@@ -8,7 +8,9 @@ const TableWrapper = props => {
       <h3>Display Table</h3> 
       <button type="button" onClick={onClickAdd}>Add</button>
       <table className="table-header-rotated">
-        {props.children}
+        <tbody>
+          {props.children}
+        </tbody>
       </table>
     </div>
   )
