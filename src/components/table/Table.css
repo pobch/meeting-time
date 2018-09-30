@@ -1,3 +1,6 @@
+.overFlow {
+  overflow-x: auto;
+}
 .table-header-rotated {
   border-collapse: collapse;
 }
