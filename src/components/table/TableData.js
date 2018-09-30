@@ -17,22 +17,30 @@ class TableData extends Component {
     const { hoursArray, data, onClickDel, onClickSave, onChangeName, onClickEdit, onChangeChecked } = this.props
     return [
       <tr>
-        <th colSpan="2">Name</th>
+        <th className="rotate" colSpan="2"></th>
         {data.map((col, colIdx) => {
           return (
-            <td>
+            <th className="rotate">
               { col.isEditing
                 ? <React.Fragment>
-                    <button type="button" onClick={onClickDel(colIdx)}>-</button>
-                    <button type="button" onClick={onClickSave(colIdx)}>S</button>
-                    <input type="text" value={col.name} onChange={onChangeName(colIdx)} />
+                    <div>
+                      <span>
+                        <button type="button" onClick={onClickDel(colIdx)}>-</button>
+                        <button type="button" onClick={onClickSave(colIdx)}>S</button>
+                        <input type="text" value={col.name} onChange={onChangeName(colIdx)} />
+                      </span>
+                    </div>
                   </React.Fragment>
                 : <React.Fragment>
-                    <button type="button" onClick={onClickEdit(colIdx)}>E</button>
-                    <input type="text" value={col.name} onChange={onChangeName(colIdx)} disabled />
+                    <div>
+                      <span>
+                        <button type="button" onClick={onClickEdit(colIdx)}>E</button>
+                        <input type="text" value={col.name} onChange={onChangeName(colIdx)} disabled />
+                      </span>
+                    </div>
                   </React.Fragment>
               }
-            </td>
+            </th>
           )
         })}
       </tr>
@@ -40,7 +48,13 @@ class TableData extends Component {
       [...Array(hoursArray.length).keys()].map(rowIdx => {
         return (
           <tr>
-            {rowIdx % 24 === 0 && <th rowSpan="24">{hoursArray[rowIdx].replace(/\|.*/ig, '')}</th>}
+            {rowIdx % 24 === 0 && 
+              <th className="row-header" rowSpan="24">
+                <div>
+                  {hoursArray[rowIdx].replace(/\|.*/ig, '')}
+                </div>
+              </th>
+            }
             <td>{hoursArray[rowIdx].replace(/.*\|/ig, '')}</td>
             {data.map((col, colIdx) => {
               return (

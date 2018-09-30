@@ -1,5 +1,5 @@
 import React from 'react'
-import './TableWrapper.css'
+import './Table.css'
 
 const TableWrapper = props => {
   const { onClickAdd } = props
@@ -7,7 +7,7 @@ const TableWrapper = props => {
     <div className="overFlow">
       <h3>Display Table</h3> 
       <button type="button" onClick={onClickAdd}>Add</button>
-      <table>
+      <table className="table-header-rotated">
         {props.children}
       </table>
     </div>
