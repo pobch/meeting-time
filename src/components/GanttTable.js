@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import _ from 'lodash'
 
 class GanttTable extends Component {
   state = {
@@ -62,7 +63,7 @@ class GanttTable extends Component {
           name: '',
           freeTime: prevState.hoursArray.map(dateHourStr => ({ dateHour: dateHourStr, free: false }))
         },
-        ...prevState.data
+        ..._.cloneDeep(prevState.data)
       ]
       return { data: newData }
     })
@@ -70,15 +71,16 @@ class GanttTable extends Component {
 
   onClickDel = (dataIdx) => () => {
     this.setState(prevState => {
+      const newData = _.cloneDeep(prevState.data)
       return {
-        data: prevState.data.slice(0, dataIdx).concat(prevState.data.slice(dataIdx + 1))
+        data: newData.slice(0, dataIdx).concat(newData.slice(dataIdx + 1))
       }
     })
   }
 
   onClickSave = (dataIdx) => () => {
     this.setState(prevState => {
-      const newData = [...prevState.data]
+      const newData = _.cloneDeep(prevState.data)
       newData[dataIdx].isEditing = false
       return { data: newData }
     })
@@ -86,7 +88,7 @@ class GanttTable extends Component {
 
   onClickEdit = (dataIdx) => () => {
     this.setState(prevState => {
-      const newData = [...prevState.data]
+      const newData = _.cloneDeep(prevState.data)
       newData[dataIdx].isEditing = true
       return { data: newData }
     })
@@ -95,7 +97,7 @@ class GanttTable extends Component {
   onChangeName = (dataIdx) => (event) => {
     const value = event.target.value
     this.setState(prevState => {
-      const newData = [...prevState.data]
+      const newData = _.cloneDeep(prevState.data)
       newData[dataIdx].name = value
       return { data: newData }
     })
@@ -104,7 +106,7 @@ class GanttTable extends Component {
   onChangeChecked = (dataIdx, freeTimeIdx) => (event) => {
     const checked = event.target.checked
     this.setState(prevState => {
-      const newData = [...prevState.data]
+      const newData = _.cloneDeep(prevState.data)
       newData[dataIdx].freeTime[freeTimeIdx].free = checked
       return { data: newData }
     })
@@ -113,7 +115,7 @@ class GanttTable extends Component {
   onChange6hoursChecked = (dataIdx, freeTimeStartIdx, freeTimeEndIdx) => (event) => {
     const checked = event.target.checked
     this.setState(prevState => {
-      const newData = [...prevState.data]
+      const newData = _.cloneDeep(prevState.data)
       for(let i = freeTimeStartIdx; i <= freeTimeEndIdx; i++) {
         newData[dataIdx].freeTime[i].free = checked
       }
